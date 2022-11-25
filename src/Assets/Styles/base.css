@@ -1,3 +1,13 @@
+/* Navigation */
 .logo-img {
     width: 5rem;
 }
+/* remove styling of button of class button-nav */
+.button-nav {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    outline: none;
+}
+.drawer { display: flex; justify-content: space-between ;}
