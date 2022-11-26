@@ -10,4 +10,13 @@
     cursor: pointer;
     outline: none;
 }
+
+.button-1 {
+    background-color: #354DE8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    padding: .5rem 1rem;
+}
 .drawer { display: flex; justify-content: space-between ;}

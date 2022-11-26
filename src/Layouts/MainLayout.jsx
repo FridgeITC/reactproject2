@@ -17,6 +17,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import ControlledAccordions from '../Components/AccordionNav';
 import BasicTable from '../Components/TableLocales';
+import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
+import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 
 
 import "../Assets/Styles/base.css";
@@ -134,12 +136,13 @@ export default function PersistentDrawerLeft() {
             <SettingsIcon />
           </button>
           <Divider />
-          <button className='button-nav' style={{paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+          {/* <button className='button-nav' style={{paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', width: '100%'}}>
           <Typography>
               Agregar local
             </Typography>
             <AddCircleOutlineIcon />
-          </button>
+          </button> */}
+          <ModalAgregaLocal />
         </div>
       </Drawer>
       {/* Sidebar Ends */}
@@ -147,6 +150,14 @@ export default function PersistentDrawerLeft() {
         <DrawerHeader />
         <div style={{width: '90vw', margin: 'auto'}}>
           <BasicTable />
+          {/* <button className='button-1' style={{
+            marginTop: '1rem'}} >
+            <Typography>
+              Agregar local
+            </Typography>
+          </button> */}
+          <ModalAgregaLocal />
+
 
         </div>
         
