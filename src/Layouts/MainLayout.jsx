@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { Outlet } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -13,17 +13,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SettingsIcon from '@mui/icons-material/Settings';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
 import ControlledAccordions from '../Components/AccordionNav';
-import BasicTable from '../Components/TableLocales';
-import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
-
-
-import "../Assets/Styles/base.css";
-
-
 
 const drawerWidth = 240;
 
@@ -97,7 +88,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <div>
-            <img src="/assets/images/nds-logo.webp" alt="logo" className='logo-img' />
+            <img src='/assets/images/nds-logo.webp' alt='logo' className='logo-img' />
           </div>
         </Toolbar>
       </AppBar>
@@ -117,22 +108,30 @@ export default function PersistentDrawerLeft() {
       >
         <div>
           <DrawerHeader>
-            <p style={{textAlign: 'left', width: '100%', paddingLeft: '1rem'}}>¡Bienvenido, Iñigo!</p>
+            <p style={{ textAlign: 'left', width: '100%', paddingLeft: '1rem' }}>¡Bienvenido, Iñigo!</p>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
-          
           </DrawerHeader>
           <Divider />
           <ControlledAccordions />
         </div>
-        <div style={{
-          paddingLeft: '1rem',
-        }}>
-        <button className='button-nav' style={{paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-          <Typography>
-              Editar locales
-            </Typography>
+        <div
+          style={{
+            paddingLeft: '1rem'
+          }}
+        >
+          <button
+            className='button-nav'
+            style={{
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%'
+            }}
+          >
+            <Typography>Editar locales</Typography>
             <SettingsIcon />
           </button>
           <Divider />
@@ -142,14 +141,7 @@ export default function PersistentDrawerLeft() {
       {/* Sidebar Ends */}
       <Main open={open}>
         <DrawerHeader />
-        <div style={{width: '90vw', margin: 'auto'}}>
-          <BasicTable />
-          <ModalAgregaLocal />
-          {/* <ModalAgregaRefri /> */}
-
-
-        </div>
-        
+        <Outlet />
       </Main>
     </Box>
   );

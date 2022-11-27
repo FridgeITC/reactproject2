@@ -1,22 +1,25 @@
 /* Navigation */
 .logo-img {
-    width: 5rem;
+  width: 5rem;
 }
 /* remove styling of button of class button-nav */
 .button-nav {
-    background: none;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    outline: none;
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  outline: none;
 }
 
 .button-1 {
-    background-color: #354DE8;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-    padding: .5rem 1rem;
+  background-color: #354de8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  padding: 0.5rem 1rem;
 }
-.drawer { display: flex; justify-content: space-between ;}
+.drawer {
+  display: flex;
+  justify-content: space-between;
+}
