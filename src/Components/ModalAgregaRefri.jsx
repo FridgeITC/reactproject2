@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
 
 export default function ModalAgregaRefri() {
   const [open, setOpen] = React.useState(false);
@@ -39,7 +40,7 @@ export default function ModalAgregaRefri() {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button style={{marginTop: '1rem'}} variant="outlined" onClick={handleClickOpen}>
         Agregar refrigerador
       </Button>
       <Dialog
@@ -72,25 +73,37 @@ export default function ModalAgregaRefri() {
                   id: 'max-width',
                 }}
               >
-                <MenuItem value={false}>false</MenuItem>
-                <MenuItem value="xs">xs</MenuItem>
-                <MenuItem value="sm">sm</MenuItem>
-                <MenuItem value="md">md</MenuItem>
-                <MenuItem value="lg">lg</MenuItem>
-                <MenuItem value="xl">xl</MenuItem>
+                <MenuItem value="coca">Coca Cola</MenuItem>
+                <MenuItem value="pepsi">Pepsi</MenuItem>
               </Select>
             </FormControl>
-            <FormControlLabel
-              sx={{ mt: 1 }}
-              control={
-                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
-              }
-              label="Full width"
-            />
           </Box>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="num_rows"
+            label="Número de hileras"
+            type="number"
+            variant="standard"
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                m: 'auto',
+                width: '50%',
+              }}
+          />
+          <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
+          <Button variant="contained" component="label">
+            Subir imagen del refrigerador
+            <input hidden accept="image/*" multiple type="file" />
+            </Button>
+
+          </div>
+          
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleClose}>Confirmar</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

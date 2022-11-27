@@ -73,10 +73,10 @@ export default function ModalAgregaLocal() {
                   id: 'max-width',
                 }}
               >
-                <MenuItem value={false}>Zona Norte</MenuItem>
-                <MenuItem value="xs">Zona Sur</MenuItem>
-                <MenuItem value="sm">Zona Oriente</MenuItem>
-                <MenuItem value="md">Zona Poniente</MenuItem>
+                <MenuItem value="norte">Zona Norte</MenuItem>
+                <MenuItem value="sur">Zona Sur</MenuItem>
+                <MenuItem value="oriente">Zona Oriente</MenuItem>
+                <MenuItem value="poniente">Zona Poniente</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -86,20 +86,6 @@ export default function ModalAgregaLocal() {
             id="name_local"
             label="Nombre del local"
             type="text"
-            variant="standard"
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                m: 'auto',
-                width: '50%',
-              }}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="num_rows"
-            label="Número de hileras"
-            type="number"
             variant="standard"
             sx={{
                 display: 'flex',

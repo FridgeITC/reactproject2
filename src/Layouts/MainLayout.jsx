@@ -136,12 +136,6 @@ export default function PersistentDrawerLeft() {
             <SettingsIcon />
           </button>
           <Divider />
-          {/* <button className='button-nav' style={{paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-          <Typography>
-              Agregar local
-            </Typography>
-            <AddCircleOutlineIcon />
-          </button> */}
           <ModalAgregaLocal />
         </div>
       </Drawer>
@@ -150,13 +144,8 @@ export default function PersistentDrawerLeft() {
         <DrawerHeader />
         <div style={{width: '90vw', margin: 'auto'}}>
           <BasicTable />
-          {/* <button className='button-1' style={{
-            marginTop: '1rem'}} >
-            <Typography>
-              Agregar local
-            </Typography>
-          </button> */}
           <ModalAgregaLocal />
+          {/* <ModalAgregaRefri /> */}
 
 
         </div>
