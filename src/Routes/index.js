@@ -3,6 +3,7 @@ import MainLayout from '../Layouts/MainLayout';
 import Home from '../Views/Home';
 import Local from '../Views/Local';
 import Refrigerador from '../Views/Refrigerador';
+import Signin from '../Views/Signin';
 
 export default function Router() {
   return (
@@ -13,6 +14,7 @@ export default function Router() {
           <Route path='/local' element={<Local />}>
             <Route path=':id' element={<Refrigerador />} />
           </Route>
+          <Route path='signin' element={<Signin />} />
           
         </Route>
       </Routes>
