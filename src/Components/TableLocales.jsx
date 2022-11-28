@@ -17,7 +17,7 @@ const rows = [
   createData('Oxxo 3', 'Zona Norte', 'Eliminar', 'Editar'),
 ];
 
-export default function BasicTable() {
+export default function TableLocales() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, width: '60%' }} aria-label="simple table">

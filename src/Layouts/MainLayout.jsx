@@ -16,7 +16,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import ControlledAccordions from '../Components/AccordionNav';
-import BasicTable from '../Components/TableLocales';
+import TableLocales from '../Components/TableLocales';
+import TableLocal from '../Components/TableLocal';
+import TableRefri from '../Components/TableRefri';
 import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 
@@ -131,23 +133,21 @@ export default function PersistentDrawerLeft() {
         }}>
         <button className='button-nav' style={{paddingTop: '1rem', paddingBottom: '1rem', display: 'flex', justifyContent: 'space-between', width: '100%'}}>
           <Typography>
-              Editar locales
+              Ver locales
             </Typography>
-            <SettingsIcon />
+            {/* <SettingsIcon /> */}
           </button>
           <Divider />
           <ModalAgregaLocal />
         </div>
       </Drawer>
       {/* Sidebar Ends */}
-      <Main open={open}>
+      <Main open={open} style={{backgroundColor: '#F9FAFC'}}>
         <DrawerHeader />
         <div style={{width: '90vw', margin: 'auto'}}>
-          <BasicTable />
-          <ModalAgregaLocal />
-          {/* <ModalAgregaRefri /> */}
-
-
+          <TableRefri />
+          {/* <ModalAgregaLocal /> */}
+          <ModalAgregaRefri />
         </div>
         
       </Main>
