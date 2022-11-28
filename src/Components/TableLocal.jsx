@@ -18,7 +18,7 @@ const rows = [
   createData('Refrigerador 2', 'Coca Cola', 'Encontrado', '70%', 'Eliminar', 'Editar'),
 ];
 
-export default function TableLocales() {
+export default function TableLocal() {
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>

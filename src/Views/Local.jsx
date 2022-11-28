@@ -1,19 +1,18 @@
 import React from 'react';
-import TableLocales from '../Components/TableLocales';
+import TableLocal from '../Components/TableLocal';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
 import TableRefri from '../Components/TableRefri';
 
 import "../Assets/Styles/base.css";
 
-const Home = () => {
+const Local = () => {
   return (
     <div style={{ width: '90vw', margin: 'auto' }}>
-      <TableLocales />
-      <ModalAgregaLocal />
-      {/* <ModalAgregaRefri /> */}
+      <TableLocal />
+      <ModalAgregaRefri />
     </div>
   );
 };
 
-export default Home;
+export default Local;

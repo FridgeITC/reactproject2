@@ -6,14 +6,12 @@ import TableRefri from '../Components/TableRefri';
 
 import "../Assets/Styles/base.css";
 
-const Home = () => {
+const Refrigerador = () => {
   return (
     <div style={{ width: '90vw', margin: 'auto' }}>
-      <TableLocales />
-      <ModalAgregaLocal />
-      {/* <ModalAgregaRefri /> */}
+      <TableRefri />
     </div>
   );
 };
 
-export default Home;
+export default Refrigerador;
