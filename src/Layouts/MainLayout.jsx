@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
+import axios from '../Config/axios';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,10 +15,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ControlledAccordions from '../Components/AccordionNav';
-import TableLocales from '../Components/TableLocales';
-import TableLocal from '../Components/TableLocal';
-import TableRefri from '../Components/TableRefri';
-import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 
 const drawerWidth = 240;
@@ -68,6 +65,19 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [zona, setZona] = React.useState(null);
+
+  React.useEffect(() => {
+    axios
+      .get(`/zone/`)
+      .then((response) => {
+        console.log(response.data);
+        setZona(response.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -143,7 +153,7 @@ export default function PersistentDrawerLeft() {
         </div>
       </Drawer>
       {/* Sidebar Ends */}
-      <Main open={open} style={{backgroundColor: '#F9FAFC'}}>
+      <Main open={open} style={{ backgroundColor: '#F9FAFC' }}>
         <DrawerHeader />
         <Outlet />
       </Main>
