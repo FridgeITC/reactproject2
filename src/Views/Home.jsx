@@ -2,6 +2,9 @@ import React from 'react';
 import BasicTable from '../Components/TableLocales';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
+import TableRefri from '../Components/TableRefri';
+
+import "../Assets/Styles/base.css";
 
 const Home = () => {
   return (
