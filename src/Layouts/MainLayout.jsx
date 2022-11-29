@@ -14,10 +14,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SettingsIcon from '@mui/icons-material/Settings';
-import ControlledAccordions from '../Components/AccordionNav';
+import AccordionNav from '../Components/AccordionNav';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 
 const drawerWidth = 240;
+const zonasArray = [];
+const localArray = [];
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   flexGrow: 1,
@@ -65,18 +67,46 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [zona, setZona] = React.useState(null);
+  const [zonas, setZonas] = React.useState([]);
+  const [locales, setLocales] = React.useState([]);
+  const [nav, setNav] = React.useState(new Array());
+
+  const getName = (id) => {
+    for (let i = 0; i < zonasArray.length; i++) if (zonasArray[i].id === id) return zonasArray[i].name;
+  };
+
+  const mapLocales = (zonas, locales) => {
+    const navMap = new Map();
+    for (let i = 0; i < zonas.length; i++) navMap.set(zonas[i].id, new Array());
+    navMap.forEach((value, key) => {
+      for (let i = 0; i < locales.length; i++) if (key === locales[i].zoneId) value.push(locales[i]);
+    });
+
+    const navArray = [...navMap];
+
+    for (let i = 0; i < navArray.length; i++) navArray[i][0] = [navArray[i][0], getName(navArray[i][0])];
+
+    return navArray;
+  };
 
   React.useEffect(() => {
-    axios
-      .get(`/zone/`)
-      .then((response) => {
-        console.log(response.data);
-        setZona(response.data);
-      })
-      .catch((error) => {
-        console.log(error.message);
+    const fetchData = async (endpoint) => {
+      const response = await axios.get(endpoint);
+      return response.data;
+    };
+    fetchData('/zone/').then((z) => {
+      z.forEach((e) => {
+        zonasArray.push(e);
       });
+      setZonas(zonasArray);
+      fetchData('/local/').then((l) => {
+        l.forEach((e) => {
+          localArray.push(e);
+        });
+        setLocales(localArray);
+        setNav(mapLocales(zonasArray, localArray));
+      });
+    });
   }, []);
 
   const handleDrawerOpen = () => {
@@ -128,7 +158,13 @@ export default function PersistentDrawerLeft() {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <ControlledAccordions />
+          {nav.length > 0 ? (
+            nav.map((z) => {
+              return <AccordionNav key={z[0]} zona={z} zonas={zonas} />;
+            })
+          ) : (
+            <> </>
+          )}
         </div>
         <div
           style={{

@@ -15,7 +15,6 @@ export default function Router() {
             <Route path=':id' element={<Refrigerador />} />
           </Route>
           <Route path='signin' element={<Signin />} />
-          
         </Route>
       </Routes>
     </BrowserRouter>
