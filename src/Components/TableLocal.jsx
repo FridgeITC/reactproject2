@@ -28,13 +28,12 @@ export default function TableLocal() {
     const [refrigeradores, setRefrigeradores] = useState([]);
 
   useEffect(() => {
-  
-    axios.get('/fridge/').then((res) => {
-      console.log("Hola Prueba",res)
-    }).catch(error => {console.log(error)})
-  
+    axios.post('/fridge/', {'local': 1})
+    .then((res) => {
+      setRefrigeradores(res.data)
+    })
+    .catch(error => {console.log(error)})
   }, [])
-
 
   return (
     <>
@@ -42,7 +41,6 @@ export default function TableLocal() {
         <p className='title'>Oxxo 1</p>
         <a href="" className='a-tag'>Eliminar</a>
         <a href="" className='a-tag'>Editar</a>
-
     </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, width: '60%' }} aria-label="local table">
@@ -53,25 +51,28 @@ export default function TableLocal() {
             <TableCell align="right">Productos ajenos</TableCell>
             <TableCell align="right">% de ocupación</TableCell>
             <TableCell align="right">Acción</TableCell>
-            <TableCell align="right">Edición</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+
+          {refrigeradores.map((row) => (
             <TableRow
-              key={row.refrigerador}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.refrigerador}
+                {row.id}
               </TableCell>
-              <TableCell align="right">{row.empresa}</TableCell>
-              <TableCell align="right">{row.ajenos}</TableCell>
-              <TableCell align="right">{row.ocupacion}</TableCell>
-              <TableCell align="right">{row.eliminar}</TableCell>
-              <TableCell align="right">{row.editar}</TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.thirdPartyProducts}</TableCell>
+              <TableCell align="right">{row.occupancy}</TableCell>
+              <TableCell align="right">
+                <a href="" className='a-tag' align='right'>Eliminar</a>
+              </TableCell>
             </TableRow>
+
           ))}
+
         </TableBody>
       </Table>
     </TableContainer>
