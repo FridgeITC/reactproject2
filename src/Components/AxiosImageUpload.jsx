@@ -2,6 +2,7 @@ import React from 'react';
 import axios from '../Config/axios';
 import { useState } from "react";
 
+import "../Assets/Styles/base.css";
 
 const AxiosImageUpload = () => {
     const [selectedFile, setSelectedFile] = React.useState('');

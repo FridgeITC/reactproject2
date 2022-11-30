@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 
-import AxiosImageUpload from './AxiosImageUpload';
+// import AxiosImageUpload from './AxiosImageUpload';
 
 export default function ModalAgregaRefri() {
   const [open, setOpen] = React.useState(false);
@@ -108,13 +108,7 @@ export default function ModalAgregaRefri() {
                 width: '50%',
               }}
           />
-          <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
-          <Button variant="contained" component="label">
-            Subir imagen del refrigerador
-            <input hidden accept="image/*" multiple type="file" />
-            </Button>
-          </div>
-          <AxiosImageUpload />
+          {/* <AxiosImageUpload /> */}
           
         </DialogContent>
         <DialogActions>
