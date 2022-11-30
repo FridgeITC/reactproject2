@@ -51,6 +51,13 @@ export default function TableLocal({refresh}) {
     })
   }
 
+  const handleDeleteLocal = (e)=>{
+    const {id} = e.target
+    axios.post('/local/delete', {"id":id}).then(res => console.log(res))
+    navigate('/')
+    window.location.reload();
+  }
+
   const handleRedirect  = (e)=>{
     const {id} = e.target
     navigate('/refrigerador/'+id)
@@ -60,8 +67,7 @@ export default function TableLocal({refresh}) {
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
         <p className='title'>{local.name}</p>
-        <a href="" className='a-tag'>Eliminar</a>
-        <a href="" className='a-tag'>Editar</a>
+        {/* <button onClick={handleDeleteLocal} className='a-tag' align='right' id={local.id}>Eliminar</button> */}
     </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, width: '60%' }} aria-label="local table">

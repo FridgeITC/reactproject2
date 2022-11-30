@@ -52,8 +52,8 @@ export default function TableRefri() {
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
         <p className='title'>Refrigerador {refrigerador.id}</p>
-        <a href="" className='a-tag'>Eliminar</a>
-        <a href="" className='a-tag'>Editar</a>
+        {/* <a href="" className='a-tag'>Eliminar</a>
+        <a href="" className='a-tag'>Editar</a> */}
 
     </div>
     <div style={{display: 'flex', gap: '1rem', marginBottom: '1rem'}}>
