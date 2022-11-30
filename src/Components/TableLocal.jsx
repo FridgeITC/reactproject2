@@ -40,7 +40,12 @@ export default function TableLocal({refresh}) {
 
   const handleDeleteFridge = (e)=>{
     const {id} = e.target
-    axios.post('/fridge/delete', {"id":id}).then(res => console.log(res))
+    axios.post('/fridge/delete', {"id":id}).then((res) =>{
+      const {status} = res.data
+      if (status === 200){
+        window.location.reload()
+      }
+    })
   }
 
   return (
