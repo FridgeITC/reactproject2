@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 
 import AxiosImageUpload from './AxiosImageUpload';
 
-export default function TableLocal() {
+export default function TableLocal({refresh}) {
 
   const params = useParams();
 
@@ -28,7 +28,7 @@ export default function TableLocal() {
       setRefrigeradores(res.data)
     })
     .catch(error => {console.log(error)})
-  }, [])
+  }, [refresh])
 
   useEffect(() => {
     axios.post('/local/get', {'id': params.id})
@@ -64,11 +64,11 @@ export default function TableLocal() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.id}
+               Refrigerador {row.id}
               </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.company}</TableCell>
               <TableCell align="right">{row.thirdPartyProducts}</TableCell>
-              <TableCell align="right">{row.occupancy}</TableCell>
+              <TableCell align="right">{(row.taggedLines + row.untaggedLines) * 100 / row.capacity}</TableCell>
               <TableCell align="right">
                 <a href="" className='a-tag' align='right'>Eliminar</a>
               </TableCell>
