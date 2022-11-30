@@ -9,6 +9,7 @@ export const Login = (props) => {
 
   const handleRedirect = () => {
     navigate('/');
+    window.location.reload();
   };
 
   const handleSubmit = (e) => {

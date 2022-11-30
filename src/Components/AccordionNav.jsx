@@ -11,15 +11,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccordionNav({ zona }) {
   const [expanded, setExpanded] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log(zona);
+  const handleRedirect = (e) => {
+    navigate('/local/' + e);
+    window.location.reload();
+  };
 
   return (
     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -30,10 +35,8 @@ export default function AccordionNav({ zona }) {
         <List>
           {zona[1].map((e) => (
             <ListItem key={e.id} disablePadding>
-              <ListItemButton>
-                <Link to={'/local/' + e.id}>
-                  <ListItemText primary={e.name} />
-                </Link>
+              <ListItemButton id={e.id} onClick={() => handleRedirect(e.id)}>
+                <ListItemText primary={e.name} />
               </ListItemButton>
             </ListItem>
           ))}

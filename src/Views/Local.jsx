@@ -5,11 +5,10 @@ import ModalAgregaRefri from '../Components/ModalAgregaRefri.jsx';
 import ModalDeleteLocal from '../Components/ModalDeleteLocal.jsx';
 import TableRefri from '../Components/TableRefri';
 
-import "../Assets/Styles/base.css";
+import '../Assets/Styles/base.css';
 import { useState } from 'react';
 
 const Local = () => {
-
   const [refresh, setRefresh] = useState(0);
 
   return (

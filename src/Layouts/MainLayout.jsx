@@ -17,6 +17,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AccordionNav from '../Components/AccordionNav';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
 
+import ndsLogo from '../Assets/Images/nds-logo.webp';
+
 const drawerWidth = 240;
 const zonasArray = [];
 const localArray = [];
@@ -132,7 +134,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <div>
-            <img src='/assets/images/nds-logo.webp' alt='logo' className='logo-img' />
+            <img src={ndsLogo} alt='logo' className='logo-img' />
           </div>
         </Toolbar>
       </AppBar>
@@ -152,7 +154,7 @@ export default function PersistentDrawerLeft() {
       >
         <div>
           <DrawerHeader>
-            <p style={{ textAlign: 'left', width: '100%', paddingLeft: '1rem' }}>¡Bienvenido, Iñigo!</p>
+            <p style={{ textAlign: 'left', width: '100%', paddingLeft: '1rem' }}>¡Bienvenido!</p>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
