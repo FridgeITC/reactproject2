@@ -62,7 +62,7 @@ export default function TableLocales({refresh}) {
                 {row.name}&nbsp;
                 <LaunchIcon className='launch-icon' />
               </TableCell>
-              <TableCell align="right">{row.zoneName}</TableCell>
+              <TableCell align="right">{row.zoneId}</TableCell>
               <TableCell align="right">
                 <button onClick={handleDeleteLocal} className='a-tag' align='right' id={row.id}>Eliminar</button>
               </TableCell>
