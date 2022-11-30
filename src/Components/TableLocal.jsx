@@ -27,6 +27,10 @@ export default function TableLocal({ refresh }) {
   const [local, setLocal] = useState([]);
   const navigate = useNavigate();
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     axios
       .post('/fridge/', { local: params.id })
@@ -56,10 +60,6 @@ export default function TableLocal({ refresh }) {
       const toastOpened = true;
       setStatus({ status, toastOpened });
     });
-  };
-
-  const handleReload = () => {
-    window.location.reload();
   };
 
   const handleDeleteLocal = (e) => {

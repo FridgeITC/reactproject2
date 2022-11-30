@@ -31,7 +31,6 @@ export default function TableRefri() {
         n+=product.count;
       })
       setTotal(n);
-
     })
     .catch(error => {console.log(error)})
   }, [])
@@ -59,12 +58,12 @@ export default function TableRefri() {
         </div>
         <div className='square'>
             <p>Total de líneas</p>
-            <p className='title'>{refrigerador.capacity}</p>
+            <p className='title'>{refrigerador.rows}</p>
         </div>
     </div>
     
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 350, width: '60%' }} aria-label="refri table">
+      <Table className="table-content" aria-label="refri table">
         <TableHead>
           <TableRow>
             <TableCell>Producto</TableCell>

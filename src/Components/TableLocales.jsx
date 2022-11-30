@@ -44,7 +44,7 @@ export default function TableLocales({refresh}) {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650, width: '60%' }} aria-label="simple table">
+      <Table aria-label="simple table" className="table-content">
         <TableHead>
           <TableRow>
             <TableCell>Local</TableCell>
