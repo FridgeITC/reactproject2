@@ -2,6 +2,8 @@ import React from 'react';
 import axios from '../Config/axios';
 import { useState } from 'react';
 
+import DialogActions from '@mui/material/DialogActions';
+
 import '../Assets/Styles/base.css';
 
 const AxiosImageUpload = ({ fridgeId }) => {
@@ -30,7 +32,9 @@ const AxiosImageUpload = ({ fridgeId }) => {
   return (
     <form onSubmit={handleSubmit} className='upload-form'>
       <input type='file' onChange={handleFileSelect} />
-      <button type='submit'>Submit</button>
+      <button type='submit' className='upload-button'>SUBMIT</button>
+
+      
     </form>
   );
 };
