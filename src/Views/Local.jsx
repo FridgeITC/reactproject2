@@ -6,12 +6,16 @@ import ModalDeleteLocal from '../Components/ModalDeleteLocal.jsx';
 import TableRefri from '../Components/TableRefri';
 
 import "../Assets/Styles/base.css";
+import { useState } from 'react';
 
 const Local = () => {
+
+  const [refresh, setRefresh] = useState(0);
+
   return (
     <div style={{ width: '90vw', margin: 'auto' }}>
-      <TableLocal />
-      <ModalAgregaRefri />
+      <TableLocal refresh={refresh} />
+      <ModalAgregaRefri refresh={refresh} setRefresh={setRefresh} />
       {/* <ModalDeleteLocal /> */}
     </div>
   );
