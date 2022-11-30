@@ -6,18 +6,33 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {useEffect , useState} from 'react';
 
-function createData(local, zona, eliminar, editar) {
-  return {local, zona, eliminar, editar};
-}
+import axios from '../Config/axios';
 
-const rows = [
-  createData('Oxxo 1', 'Zona Sur', 'Eliminar', 'Editar'),
-  createData('Oxxo 2', 'Zona Norte', 'Eliminar', 'Editar'),
-  createData('Oxxo 3', 'Zona Norte', 'Eliminar', 'Editar'),
-];
+import "../Assets/Styles/base.css";
+import { useParams } from 'react-router-dom';
 
-export default function TableLocales() {
+export default function TableLocales({refresh}) {
+
+  const params = useParams();
+
+  const [locales, setLocales] = useState([]);
+
+  useEffect(() => {
+    axios.get('/local/')
+    .then((res) => {
+      setLocales(res.data)
+    })
+    .catch(error => {console.log(error)})
+  }, [refresh])
+
+  const handleDeleteLocal = (e)=>{
+    const {id} = e.target
+    axios.post('/local/delete', {"id":id}).then(res => console.log(res))
+  }
+  
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, width: '60%' }} aria-label="simple table">
@@ -26,21 +41,21 @@ export default function TableLocales() {
             <TableCell>Local</TableCell>
             <TableCell align="right">Zona</TableCell>
             <TableCell align="right">Acción</TableCell>
-            <TableCell align="right">Edición</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {locales.map((row) => (
             <TableRow
-              key={row.local}
+              key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.local}
+                {row.name}
               </TableCell>
-              <TableCell align="right">{row.zona}</TableCell>
-              <TableCell align="right">{row.eliminar}</TableCell>
-              <TableCell align="right">{row.editar}</TableCell>
+              <TableCell align="right">{row.zoneId}</TableCell>
+              <TableCell align="right">
+                <button onClick={handleDeleteLocal} className='a-tag' align='right' id={row.id}>Eliminar</button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
