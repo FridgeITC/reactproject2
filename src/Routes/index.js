@@ -4,7 +4,7 @@ import LoginLayout from '../Layouts/LoginLayout';
 import Home from '../Views/Home';
 import Local from '../Views/Local';
 import Refrigerador from '../Views/Refrigerador';
-import SignIn from '../Views/SignIn';
+import SignIn from '../Views/Signin';
 
 export default function Router() {
   return (
