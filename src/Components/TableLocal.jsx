@@ -73,7 +73,7 @@ export default function TableLocal() {
                 <a href="" className='a-tag' align='right'>Eliminar</a>
               </TableCell>
               <TableCell align="right">
-                <AxiosImageUpload />
+                <AxiosImageUpload fridgeId={row.id} />
               </TableCell>
               
             </TableRow>
