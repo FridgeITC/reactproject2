@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import axios from '../Config/axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = (props) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/');
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,9 +20,8 @@ export const Login = (props) => {
         password: pass
       })
       .then((res) => {
-        console.log(res);
-        localStorage.setItem('jwt', '1234');
-        console.log(localStorage.getItem('jwt'));
+        localStorage.setItem('jwt-token', res.data['jwt-token']);
+        handleRedirect();
       })
       .catch((error) => {
         console.log(error);
