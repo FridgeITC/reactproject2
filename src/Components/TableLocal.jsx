@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
+import { useNavigate } from "react-router-dom";
 
 import axios from '../Config/axios';
 
@@ -21,6 +22,7 @@ export default function TableLocal({refresh}) {
 
   const [refrigeradores, setRefrigeradores] = useState([]);
   const [local, setLocal] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.post('/fridge/', {'local': params.id})
@@ -48,6 +50,11 @@ export default function TableLocal({refresh}) {
     })
   }
 
+  const handleRedirect  = (e)=>{
+    const {id} = e.target
+    navigate('/refrigerador/'+id)
+  }
+
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
@@ -73,7 +80,7 @@ export default function TableLocal({refresh}) {
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" onClick={handleRedirect} id={row.id}>
                Refrigerador {row.id}
               </TableCell>
               <TableCell align="right">{row.company}</TableCell>
