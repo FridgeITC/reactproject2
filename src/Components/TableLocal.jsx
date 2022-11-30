@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import createAlert from './createAlert'
+import LaunchIcon from '@mui/icons-material/Launch';
+
 import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
@@ -56,6 +58,13 @@ export default function TableLocal({refresh}) {
     window.location.reload()
   }
 
+  const handleDeleteLocal = (e)=>{
+    const {id} = e.target
+    axios.post('/local/delete', {"id":id}).then(res => console.log(res))
+    navigate('/')
+    window.location.reload();
+  }
+
   const handleRedirect  = (e)=>{
     const {id} = e.target
     navigate('/refrigerador/'+id)
@@ -70,8 +79,7 @@ export default function TableLocal({refresh}) {
       </Snackbar>
     <div style={{display: 'flex', alignItems: 'center'}}>
         <p className='title'>{local.name}</p>
-        <a href="" className='a-tag'>Eliminar</a>
-        <a href="" className='a-tag'>Editar</a>
+        {/* <button onClick={handleDeleteLocal} className='a-tag' align='right' id={local.id}>Eliminar</button> */}
     </div>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, width: '60%' }} aria-label="local table">
@@ -91,8 +99,9 @@ export default function TableLocal({refresh}) {
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row" onClick={handleRedirect} id={row.id}>
+              <TableCell className='refri-send' component="th" scope="row" onClick={handleRedirect} id={row.id}>
                Refrigerador {row.id}
+               <LaunchIcon className='launch-icon' />
               </TableCell>
               <TableCell align="right">{row.company}</TableCell>
               <TableCell align="right">{row.thirdPartyProducts}</TableCell>

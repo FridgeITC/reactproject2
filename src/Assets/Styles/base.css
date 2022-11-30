@@ -47,6 +47,7 @@ a {
   color: #000;
   text-decoration: none;
   margin: 0 0.5rem;
+  padding-right: 0;
 }
 .title {
   font-size: 1.3rem;
@@ -61,14 +62,21 @@ a {
 
 .upload-form {
   display: flex;
+  align-items: center;
   /* flex-direction: column; */
 }
-.upload-form input[type='file'] {
+/* .upload-form input[type='file'] {
   color: transparent;
   overflow:hidden;
-}
-.upload-form button {
+} */
+/* .upload-form button {
   position: relative;
   left: -40%;
   padding: 0;
-}
+} */
+
+.refri-send, .local-send { cursor: pointer; }
+.launch-icon { height: 1rem!important; }
+.upload-button { border: 1px solid #1976D2; padding: 5px 15px; border-radius: 5px; color: #1976D2; font-weight: 600; }
+.upload-button:hover { background-color: hsla(210, 79%, 46%, 0.05); }
+.upload-button:focus { background-color: hsla(210, 79%, 46%, 0.1); }

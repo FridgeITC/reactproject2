@@ -16,6 +16,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccordionNav from '../Components/AccordionNav';
 import ModalAgregaLocal from '../Components/ModalAgregaLocal';
+import { useNavigate } from 'react-router-dom';
+
+import ndsLogo from '../Assets/Images/nds-logo.webp';
 
 const drawerWidth = 240;
 const zonasArray = [];
@@ -70,6 +73,12 @@ export default function PersistentDrawerLeft() {
   const [zonas, setZonas] = React.useState([]);
   const [locales, setLocales] = React.useState([]);
   const [nav, setNav] = React.useState(new Array());
+  const navigate = useNavigate();
+
+  const handleRedirect = (route) => {
+    navigate(route);
+    window.location.reload();
+  };
 
   const getName = (id) => {
     for (let i = 0; i < zonasArray.length; i++) if (zonasArray[i].id === id) return zonasArray[i].name;
@@ -94,19 +103,24 @@ export default function PersistentDrawerLeft() {
       const response = await axios.get(endpoint);
       return response.data;
     };
-    fetchData('/zone/').then((z) => {
-      z.forEach((e) => {
-        zonasArray.push(e);
-      });
-      setZonas(zonasArray);
-      fetchData('/local/').then((l) => {
-        l.forEach((e) => {
-          localArray.push(e);
+    fetchData('/zone/')
+      .then((z) => {
+        z.forEach((e) => {
+          zonasArray.push(e);
         });
-        setLocales(localArray);
-        setNav(mapLocales(zonasArray, localArray));
+        setZonas(zonasArray);
+        fetchData('/local/').then((l) => {
+          l.forEach((e) => {
+            localArray.push(e);
+          });
+          setLocales(localArray);
+          setNav(mapLocales(zonasArray, localArray));
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.status);
+        if (err.response.status == 401) handleRedirect('/login');
       });
-    });
   }, []);
 
   const handleDrawerOpen = () => {
@@ -131,9 +145,9 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <div>
-            <img src='/assets/images/nds-logo.webp' alt='logo' className='logo-img' />
-          </div>
+          <a role='button' onClick={() => handleRedirect('/')} style={{ cursor: 'pointer' }}>
+            <img src={ndsLogo} alt='logo' className='logo-img' />
+          </a>
         </Toolbar>
       </AppBar>
       {/* Sidebar Starts */}
@@ -152,7 +166,7 @@ export default function PersistentDrawerLeft() {
       >
         <div>
           <DrawerHeader>
-            <p style={{ textAlign: 'left', width: '100%', paddingLeft: '1rem' }}>¡Bienvenido, Iñigo!</p>
+            <p style={{ textAlign: 'left', width: '100%', paddingLeft: '1rem' }}>¡Bienvenido!</p>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
@@ -171,19 +185,6 @@ export default function PersistentDrawerLeft() {
             paddingLeft: '1rem'
           }}
         >
-          <button
-            className='button-nav'
-            style={{
-              paddingTop: '1rem',
-              paddingBottom: '1rem',
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%'
-            }}
-          >
-            <Typography>Editar locales</Typography>
-            <SettingsIcon />
-          </button>
           <Divider />
           <ModalAgregaLocal />
         </div>
