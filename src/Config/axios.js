@@ -5,6 +5,6 @@ export default axios.create({
   headers: {
     accept: 'application/json',
     Authorization:
-      'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MDU1NTQsImlhdCI6MTY2OTc5NTQ3NCwibmJmIjoxNjY5Nzk1NDc0LCJpZGVudGl0eSI6MX0.Gwn7q98ZLpKKNwIEdChqg0Ws_NObIS-KeMWsNlDYMEM'
+      'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MzE3MTIsImlhdCI6MTY2OTgyMTYzMiwibmJmIjoxNjY5ODIxNjMyLCJpZGVudGl0eSI6MX0.vkJ-ALGKAsz5gZn4_r3Rtp6lyyjFzFeInF_Nth7LALA'
   }
 });
