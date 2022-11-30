@@ -11,26 +11,27 @@ import {useEffect , useState} from 'react';
 import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
-
-
-
-function createData(refrigerador, empresa, ajenos, ocupacion, eliminar, editar) {
-  return {refrigerador, empresa, ajenos, ocupacion, eliminar, editar};
-}
-
-const rows = [
-  createData('Refrigerador 1', 'Coca Cola', 'Encontrado', '80%', 'Eliminar', 'Editar'),
-  createData('Refrigerador 2', 'Coca Cola', 'Encontrado', '70%', 'Eliminar', 'Editar'),
-];
+import { useParams } from 'react-router-dom';
 
 export default function TableLocal() {
 
-    const [refrigeradores, setRefrigeradores] = useState([]);
+  const params = useParams();
+
+  const [refrigeradores, setRefrigeradores] = useState([]);
+  const [local, setLocal] = useState([]);
 
   useEffect(() => {
-    axios.post('/fridge/', {'local': 1})
+    axios.post('/fridge/', {'local': params.id})
     .then((res) => {
       setRefrigeradores(res.data)
+    })
+    .catch(error => {console.log(error)})
+  }, [])
+
+  useEffect(() => {
+    axios.post('/local/get', {'id': params.id})
+    .then((res) => {
+      setLocal(res.data)
     })
     .catch(error => {console.log(error)})
   }, [])
@@ -38,7 +39,7 @@ export default function TableLocal() {
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
-        <p className='title'>Oxxo 1</p>
+        <p className='title'>{local.name}</p>
         <a href="" className='a-tag'>Eliminar</a>
         <a href="" className='a-tag'>Editar</a>
     </div>
