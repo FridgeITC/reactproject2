@@ -56,6 +56,7 @@ export default function TableLocal() {
             <TableCell align="right">Productos ajenos</TableCell>
             <TableCell align="right">% de ocupación</TableCell>
             <TableCell align="right">Acción</TableCell>
+            <TableCell align="left" style={{paddingLeft: '1rem'}}>Imagen</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
