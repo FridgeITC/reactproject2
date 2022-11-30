@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
+import { useNavigate } from "react-router-dom";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 import axios from '../Config/axios';
 
@@ -19,6 +21,8 @@ export default function TableLocales({refresh}) {
 
   const [locales, setLocales] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios.get('/local/')
     .then((res) => {
@@ -30,6 +34,11 @@ export default function TableLocales({refresh}) {
   const handleDeleteLocal = (e)=>{
     const {id} = e.target
     axios.post('/local/delete', {"id":id}).then(res => console.log(res))
+  }
+
+  const handleRedirect  = (e)=>{
+    const {id} = e.target
+    navigate('/local/'+id)
   }
   
 
@@ -49,8 +58,9 @@ export default function TableLocales({refresh}) {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
+              <TableCell className='local-send' component="th" scope="row" onClick={handleRedirect} id={row.id}>
+                {row.name}&nbsp;
+                <LaunchIcon className='launch-icon' />
               </TableCell>
               <TableCell align="right">{row.zoneId}</TableCell>
               <TableCell align="right">
