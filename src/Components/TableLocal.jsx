@@ -8,19 +8,21 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
 import { useNavigate } from "react-router-dom";
-
+import createAlert from './createAlert'
 import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
 import { useParams } from 'react-router-dom';
 
 import AxiosImageUpload from './AxiosImageUpload';
+import {Snackbar} from "@mui/material";
 
 export default function TableLocal({refresh}) {
 
   const params = useParams();
 
   const [refrigeradores, setRefrigeradores] = useState([]);
+  const [status, setStatus] = useState({toastOpened: false, status : 200})
   const [local, setLocal] = useState([]);
   const navigate = useNavigate();
 
@@ -44,10 +46,14 @@ export default function TableLocal({refresh}) {
     const {id} = e.target
     axios.post('/fridge/delete', {"id":id}).then((res) =>{
       const {status} = res.data
-      if (status === 200){
-        window.location.reload()
-      }
+      const toastOpened = true
+      setStatus({status, toastOpened})
     })
+  }
+
+
+  const handleReload = () =>{
+    window.location.reload()
   }
 
   const handleRedirect  = (e)=>{
@@ -57,6 +63,11 @@ export default function TableLocal({refresh}) {
 
   return (
     <>
+      <Snackbar  open={status.toastOpened} autoHideDuration={1500} onClose={handleReload}>
+        {
+          createAlert(status.status == 200)
+        }
+      </Snackbar>
     <div style={{display: 'flex', alignItems: 'center'}}>
         <p className='title'>{local.name}</p>
         <a href="" className='a-tag'>Eliminar</a>
