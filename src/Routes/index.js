@@ -16,7 +16,7 @@ export default function Router() {
             <Route path=':id' element={<Local />} />
           </Route>
         </Route>
-        <Route path='/signin' element={<LoginLayout />}>
+        <Route path='/login' element={<LoginLayout />}>
           <Route index element={<Signin />} />
         </Route>
       </Routes>
