@@ -6,12 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {useEffect , useState} from 'react';
 
+import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
-
-
-
+import { useParams } from 'react-router-dom';
 
 function createData(producto, etiqueta, total, ubicacion) {
   return {producto, etiqueta, total, ubicacion};
@@ -34,10 +34,24 @@ const missing = [
 ]
 
 export default function TableRefri() {
+
+  const params = useParams();
+
+  const [refrigerador, setRefrigerador] = useState([]);
+
+  useEffect(() => {
+    axios.post('/fridge/get', {'id': params.id})
+    .then((res) => {
+      setRefrigerador(res.data)
+      console.log(res.data);
+    })
+    .catch(error => {console.log(error)})
+  }, [])
+
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
-        <p className='title'>Refrigerador 1</p>
+        <p className='title'>Refrigerador {refrigerador.id}</p>
         <a href="" className='a-tag'>Eliminar</a>
         <a href="" className='a-tag'>Editar</a>
 
@@ -45,19 +59,19 @@ export default function TableRefri() {
     <div style={{display: 'flex', gap: '1rem', marginBottom: '1rem'}}>
         <div className='square'>
             <p>Última actualización</p>
-            <p className='title'>Hace 20 min.</p>
+            <p className='title'>{refrigerador.at}</p>
         </div>
         <div className='square'>
             <p>Líneas vacías</p>
-            <p className='title'>2</p>
+            <p className='title'>{refrigerador.emptyLines}</p>
         </div>
         <div className='square'>
             <p>Líneas etiquetadas</p>
-            <p className='title'>4</p>
+            <p className='title'>{refrigerador.taggedLines}</p>
         </div>
         <div className='square'>
             <p>Total de líneas</p>
-            <p className='title'>10</p>
+            <p className='title'>{refrigerador.capacity}</p>
         </div>
     </div>
     
@@ -71,29 +85,18 @@ export default function TableRefri() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {refrigerador.products && refrigerador.products.map((product) => (
             <TableRow
-              key={row.producto}
+              key={product.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.producto}
+                {product.name}
               </TableCell>
-              <TableCell align="right">{row.etiqueta}</TableCell>
-              <TableCell align="right">{row.total}</TableCell>
+              <TableCell align="right">{product.unlabeled}</TableCell>
+              <TableCell align="right">{product.count}</TableCell>
             </TableRow>
           ))}
-        </TableBody>
-        <TableHead>
-            <TableCell>Líneas vacías</TableCell>
-        </TableHead>
-        <TableBody>
-            {missing.map((missed) =>(
-                <TableRow key={missed.coordenada}>
-                    <TableCell>{missed.coordenada}</TableCell>
-                </TableRow>
-
-            ))}
         </TableBody>
       </Table>
     </TableContainer>

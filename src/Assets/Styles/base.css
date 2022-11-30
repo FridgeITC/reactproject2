@@ -61,4 +61,14 @@ a {
 
 .upload-form {
   display: flex;
+  /* flex-direction: column; */
+}
+.upload-form input[type='file'] {
+  color: transparent;
+  overflow:hidden;
+}
+.upload-form button {
+  position: relative;
+  left: -40%;
+  padding: 0;
 }

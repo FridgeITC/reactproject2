@@ -2,8 +2,9 @@ import React from 'react';
 import axios from '../Config/axios';
 import { useState } from "react";
 
+import "../Assets/Styles/base.css";
 
-const AxiosImageUpload = () => {
+const AxiosImageUpload = ({fridgeId}) => {
     const [selectedFile, setSelectedFile] = React.useState('');
 
     const handleFileSelect = (event) => {
@@ -15,7 +16,7 @@ const AxiosImageUpload = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('image', selectedFile);
-        formData.append('fridgeId', 1);
+        formData.append('fridgeId', fridgeId);
         axios.post('/image', formData).then((res) => {
             console.log("Hola Prueba",res)
         }).catch(error => {console.log(error)})

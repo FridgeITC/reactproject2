@@ -13,19 +13,34 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
+import { useParams } from 'react-router-dom';
 
-import AxiosImageUpload from './AxiosImageUpload';
+import axios from '../Config/axios';
 
-export default function ModalAgregaRefri() {
+// import AxiosImageUpload from './AxiosImageUpload';
+
+export default function ModalAgregaRefri({refresh, setRefresh}) {
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
+
+  const params = useParams();
+
+  const [newFridge, setNewFridge] = React.useState({local: params.id}); 
+
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (action) => {
+    if(action === 'confirm') {
+      axios.post('/fridge/add', newFridge)
+      .then((res) => {
+        setRefresh(refresh+1);
+      })
+      .catch(error => {console.log(error)})
+      }
     setOpen(false);
   };
 
@@ -34,11 +49,20 @@ export default function ModalAgregaRefri() {
       // @ts-expect-error autofill of arbitrary value is not handled.
       event.target.value,
     );
+    setNewFridge({...newFridge, company: event.target.value});
   };
 
   const handleFullWidthChange = (event) => {
     setFullWidth(event.target.checked);
   };
+
+  const handleRowsChange = (e) => {
+    setNewFridge({...newFridge, rows: e.target.value});
+  }
+
+  const handleCapacityChange = (e) => {
+    setNewFridge({...newFridge, capacity: e.target.value});
+  }
 
   return (
     <React.Fragment>
@@ -66,6 +90,7 @@ export default function ModalAgregaRefri() {
             <FormControl sx={{ mt: 2, minWidth: 120 }}>
               <InputLabel htmlFor="max-width">Empresa</InputLabel>
               <Select
+                name="company"
                 autoFocus
                 value={maxWidth}
                 onChange={handleMaxWidthChange}
@@ -75,14 +100,15 @@ export default function ModalAgregaRefri() {
                   id: 'max-width',
                 }}
               >
-                <MenuItem value="coca">Coca Cola</MenuItem>
-                <MenuItem value="pepsi">Pepsi</MenuItem>
+                <MenuItem value="1">FEMSA</MenuItem>
+                <MenuItem value="2">PepsiCo</MenuItem>
               </Select>
             </FormControl>
           </Box>
           <TextField
             autoFocus
             margin="dense"
+            name="num_rows"
             id="num_rows"
             label="Filas"
             type="number"
@@ -93,11 +119,13 @@ export default function ModalAgregaRefri() {
                 m: 'auto',
                 width: '50%',
               }}
+            onChange={handleRowsChange}
           />
           <TextField
             autoFocus
             margin="dense"
-            id="num_rows"
+            id="capacity"
+            name="capacity"
             label="Capacidad"
             type="number"
             variant="standard"
@@ -107,19 +135,13 @@ export default function ModalAgregaRefri() {
                 m: 'auto',
                 width: '50%',
               }}
+              onChange={handleCapacityChange}
           />
-          <div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
-          <Button variant="contained" component="label">
-            Subir imagen del refrigerador
-            <input hidden accept="image/*" multiple type="file" />
-            </Button>
-          </div>
-          <AxiosImageUpload />
           
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose}>Confirmar</Button>
+          <Button onClick={() => handleClose('cancel')}>Cancelar</Button>
+          <Button onClick={() => handleClose('confirm')}>Confirmar</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
