@@ -8,8 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
 
-
-
 import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
