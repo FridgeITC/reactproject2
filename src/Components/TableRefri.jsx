@@ -13,37 +13,25 @@ import axios from '../Config/axios';
 import "../Assets/Styles/base.css";
 import { useParams } from 'react-router-dom';
 
-function createData(producto, etiqueta, total, ubicacion) {
-  return {producto, etiqueta, total, ubicacion};
-}
-
-function createMissing(coordenada){
-    return {coordenada};
-}
-
-const rows = [
-  createData('Coca Cola', '4', '10'),
-  createData('Sprite', '2', '8'),
-  createData('Fanta', '4', '10'),
-  createData('No identificado', '4', '10'),
-];
-
-const missing = [
-    createMissing('(0,2)'),
-    createMissing('(2,2)'),
-]
-
 export default function TableRefri() {
 
   const params = useParams();
 
   const [refrigerador, setRefrigerador] = useState([]);
+  const [total, setTotal] = useState([]);
 
   useEffect(() => {
     axios.post('/fridge/get', {'id': params.id})
     .then((res) => {
       setRefrigerador(res.data)
       console.log(res.data);
+
+      let n = 0;
+      res.data.products.map(product => {
+        n+=product.count;
+      })
+      setTotal(n);
+
     })
     .catch(error => {console.log(error)})
   }, [])
@@ -63,7 +51,7 @@ export default function TableRefri() {
         </div>
         <div className='square'>
             <p>Líneas vacías</p>
-            <p className='title'>{refrigerador.emptyLines}</p>
+            <p className='title'>{refrigerador.rows && refrigerador.rows - total}</p>
         </div>
         <div className='square'>
             <p>Líneas etiquetadas</p>
