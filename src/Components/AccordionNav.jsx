@@ -31,7 +31,7 @@ export default function AccordionNav({ zona }) {
           {zona[1].map((e) => (
             <ListItem key={e.id} disablePadding>
               <ListItemButton>
-                <Link to={'/tienda-' + e.id}>
+                <Link to={'/local' + e.id}>
                   <ListItemText primary={e.name} />
                 </Link>
               </ListItemButton>
