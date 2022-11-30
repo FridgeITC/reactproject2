@@ -2,6 +2,7 @@ import React from 'react';
 import axios from '../Config/axios';
 import { useState } from "react";
 
+
 const AxiosImageUpload = () => {
     const [selectedFile, setSelectedFile] = React.useState('');
 
@@ -21,7 +22,7 @@ const AxiosImageUpload = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='upload-form'>
             <input type="file" onChange={handleFileSelect} />
             <button type='submit'>Submit</button>
         </form>

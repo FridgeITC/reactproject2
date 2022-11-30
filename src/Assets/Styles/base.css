@@ -57,3 +57,7 @@ a {
   border-radius: 15px;
   width: 100vw;
 }
+
+.upload-form {
+  display: flex;
+}

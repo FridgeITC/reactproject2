@@ -8,10 +8,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
 
+
+
 import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
 import { useParams } from 'react-router-dom';
+
+import AxiosImageUpload from './AxiosImageUpload';
 
 export default function TableLocal() {
 
@@ -55,7 +59,6 @@ export default function TableLocal() {
           </TableRow>
         </TableHead>
         <TableBody>
-
           {refrigeradores.map((row) => (
             <TableRow
               key={row.id}
@@ -70,10 +73,12 @@ export default function TableLocal() {
               <TableCell align="right">
                 <a href="" className='a-tag' align='right'>Eliminar</a>
               </TableCell>
+              <TableCell align="right">
+                <AxiosImageUpload />
+              </TableCell>
+              
             </TableRow>
-
           ))}
-
         </TableBody>
       </Table>
     </TableContainer>
