@@ -80,3 +80,15 @@ a {
 .upload-button { border: 1px solid #1976D2; padding: 5px 15px; border-radius: 5px; color: #1976D2; font-weight: 600; }
 .upload-button:hover { background-color: hsla(210, 79%, 46%, 0.05); }
 .upload-button:focus { background-color: hsla(210, 79%, 46%, 0.1); }
+
+.table-content {
+  min-width: 650px!important;
+  width: 60%!important;
+}
+
+@media screen and (max-width: 767.98px) {
+  .table-content {
+    min-width: 450px!important;
+    width: 30%!important;
+  }
+}

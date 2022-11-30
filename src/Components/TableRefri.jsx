@@ -63,7 +63,7 @@ export default function TableRefri() {
     </div>
     
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 350, width: '60%' }} aria-label="refri table">
+      <Table className="table-content" aria-label="refri table">
         <TableHead>
           <TableRow>
             <TableCell>Producto</TableCell>
