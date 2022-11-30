@@ -38,6 +38,11 @@ export default function TableLocal() {
     .catch(error => {console.log(error)})
   }, [])
 
+  const handleDeleteFridge = (e)=>{
+    const {id} = e.target
+    axios.post('/fridge/delete', {"id":id}).then(res => console.log(res))
+  }
+
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
@@ -70,7 +75,7 @@ export default function TableLocal() {
               <TableCell align="right">{row.thirdPartyProducts}</TableCell>
               <TableCell align="right">{row.occupancy}</TableCell>
               <TableCell align="right">
-                <a href="" className='a-tag' align='right'>Eliminar</a>
+                <button onClick={handleDeleteFridge} className='a-tag' align='right' id={row.id}>Eliminar</button>
               </TableCell>
               <TableCell align="right">
                 <AxiosImageUpload fridgeId={row.id} />
