@@ -5,7 +5,7 @@ import '../Assets/Styles/base.css';
 
 export default function LoginLayout() {
   return (
-    <div style={{ width: '100vw', heoght: '100vw' }}>
+    <div>
       <Outlet />
     </div>
   );
