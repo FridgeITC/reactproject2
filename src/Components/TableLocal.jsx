@@ -70,7 +70,7 @@ export default function TableLocal({refresh}) {
         {/* <button onClick={handleDeleteLocal} className='a-tag' align='right' id={local.id}>Eliminar</button> */}
     </div>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650, width: '60%' }} aria-label="local table">
+      <Table className="table-content" aria-label="local table">
         <TableHead>
           <TableRow>
             <TableCell>Refrigerador</TableCell>
