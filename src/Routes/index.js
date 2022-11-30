@@ -4,7 +4,7 @@ import LoginLayout from '../Layouts/LoginLayout';
 import Home from '../Views/Home';
 import Local from '../Views/Local';
 import Refrigerador from '../Views/Refrigerador';
-import Signin from '../Views/Signin';
+import SignIn from '../Views/SignIn';
 
 export default function Router() {
   return (
@@ -19,8 +19,8 @@ export default function Router() {
             <Route path=':id' element={<Refrigerador />} />
           </Route>
         </Route>
-        <Route path='/signin' element={<LoginLayout />}>
-          <Route index element={<Signin />} />
+        <Route path='/login' element={<LoginLayout />}>
+          <Route index element={<SignIn />} />
         </Route>
       </Routes>
     </BrowserRouter>
