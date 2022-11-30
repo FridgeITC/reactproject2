@@ -47,6 +47,7 @@ a {
   color: #000;
   text-decoration: none;
   margin: 0 0.5rem;
+  padding-right: 0;
 }
 .title {
   font-size: 1.3rem;
@@ -72,3 +73,6 @@ a {
   left: -40%;
   padding: 0;
 }
+
+.refri-send, .local-send { cursor: pointer; }
+.launch-icon { height: 1rem!important; }

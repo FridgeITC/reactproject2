@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect , useState} from 'react';
 import { useNavigate } from "react-router-dom";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 import axios from '../Config/axios';
 
@@ -80,8 +81,9 @@ export default function TableLocal({refresh}) {
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row" onClick={handleRedirect} id={row.id}>
+              <TableCell className='refri-send' component="th" scope="row" onClick={handleRedirect} id={row.id}>
                Refrigerador {row.id}
+               <LaunchIcon className='launch-icon' />
               </TableCell>
               <TableCell align="right">{row.company}</TableCell>
               <TableCell align="right">{row.thirdPartyProducts}</TableCell>
