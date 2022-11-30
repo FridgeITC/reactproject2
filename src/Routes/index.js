@@ -15,6 +15,9 @@ export default function Router() {
           <Route path='/local' element={<Local />}>
             <Route path=':id' element={<Local />} />
           </Route>
+          <Route path='/refrigerador' element={<Refrigerador />}>
+            <Route path=':id' element={<Refrigerador />} />
+          </Route>
         </Route>
         <Route path='/signin' element={<LoginLayout />}>
           <Route index element={<Signin />} />
