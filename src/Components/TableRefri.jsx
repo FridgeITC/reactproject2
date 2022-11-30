@@ -7,7 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
 import "../Assets/Styles/base.css";
+
+
+
 
 function createData(producto, etiqueta, total, ubicacion) {
   return {producto, etiqueta, total, ubicacion};

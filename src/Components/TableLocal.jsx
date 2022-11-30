@@ -6,8 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {useEffect , useState} from 'react';
+
+import axios from '../Config/axios';
 
 import "../Assets/Styles/base.css";
+
+
 
 function createData(refrigerador, empresa, ajenos, ocupacion, eliminar, editar) {
   return {refrigerador, empresa, ajenos, ocupacion, eliminar, editar};
@@ -19,6 +24,18 @@ const rows = [
 ];
 
 export default function TableLocal() {
+
+    const [refrigeradores, setRefrigeradores] = useState([]);
+
+  useEffect(() => {
+  
+    axios.get('/fridge/').then((res) => {
+      console.log("Hola Prueba",res)
+    }).catch(error => {console.log(error)})
+  
+  }, [])
+
+
   return (
     <>
     <div style={{display: 'flex', alignItems: 'center'}}>
